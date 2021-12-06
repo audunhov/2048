@@ -1,0 +1,21 @@
+{
+    "name": "SU 2048",
+    "short_name": "2048",
+    "start_url": "index.html",
+    "scope": "./",
+    "icons": [
+      {
+        "src": "logo.svg",
+        "sizes": "192x192",
+        "type": "image/svg"
+      },
+      {
+        "src": "logo.svg",
+        "sizes": "512x512",
+        "type": "image/svg"
+      }
+    ],
+    "theme_color": "#ee2100",
+    "background_color": "#FFFFFF",
+    "display": "standalone"
+  }
