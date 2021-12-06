@@ -1,7 +1,5 @@
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
-  this.scoreContainer   = document.querySelector(".score-container");
-  this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
@@ -20,9 +18,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
         }
       });
     });
-
-    self.updateScore(metadata.score);
-    self.updateBestScore(metadata.bestScore);
 
     if (metadata.terminated) {
       if (metadata.over) {
@@ -62,7 +57,11 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  let img = document.createElement("img")
+  let index = Math.log2(tile.value);
+  img.src = `./images/${index}.jpg`
+  inner.appendChild(img);
+  // inner.textContent = tile.value;
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -101,27 +100,6 @@ HTMLActuator.prototype.normalizePosition = function (position) {
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
   return "tile-position-" + position.x + "-" + position.y;
-};
-
-HTMLActuator.prototype.updateScore = function (score) {
-  this.clearContainer(this.scoreContainer);
-
-  var difference = score - this.score;
-  this.score = score;
-
-  this.scoreContainer.textContent = this.score;
-
-  if (difference > 0) {
-    var addition = document.createElement("div");
-    addition.classList.add("score-addition");
-    addition.textContent = "+" + difference;
-
-    this.scoreContainer.appendChild(addition);
-  }
-};
-
-HTMLActuator.prototype.updateBestScore = function (bestScore) {
-  this.bestContainer.textContent = bestScore;
 };
 
 HTMLActuator.prototype.message = function (won) {
