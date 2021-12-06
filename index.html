@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nb">
+
 <head>
   <meta charset="utf-8">
   <title>2048</title>
@@ -12,8 +13,10 @@
 
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=5, minimal-ui">
+  <meta name="viewport"
+    content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=5, minimal-ui">
 </head>
+
 <body>
   <div class="container">
     <div class="heading">
@@ -62,12 +65,17 @@
     </div>
 
     <p class="game-explanation">
-      <strong class="important">Hvordan spille:</strong> Bruk <strong>piltastene</strong> for å flytte brikkene. Når to brikker med samme bilde treffes, <strong>slås de sammen!</strong>
+      <strong class="important">Hvordan spille:</strong> Bruk <strong>piltastene</strong> for å flytte brikkene. Når to
+      brikker med samme bilde treffes, <strong>slås de sammen!</strong>
     </p>
     <hr>
     <p class="credits">
-    Forked of hcz by <a href="http://github.com/audunhov" target="_blank" rel="noopener">audunhov.</a> Created by <a href="http://gabrielecirulli.com" target="_blank" rel="noopener">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank" rel="noopener">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank" rel="noopener">Threes by Asher Vollmer.</a>
-    </p>  
+      Forked of hcz by <a href="http://github.com/audunhov" target="_blank" rel="noopener">audunhov.</a> Created by <a
+        href="http://gabrielecirulli.com" target="_blank" rel="noopener">Gabriele Cirulli.</a> Based on <a
+        href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank" rel="noopener">1024 by Veewo Studio</a>
+      and conceptually similar to <a href="http://asherv.com/threes/" target="_blank" rel="noopener">Threes by Asher
+        Vollmer.</a>
+    </p>
   </div>
 
   <script src="js/animframe_polyfill.js"></script>
@@ -87,7 +95,14 @@
         navigator.serviceWorker.register('/service-worker.js');
       });
     }
-    </script>
+
+    import { precacheAndRoute } from "workbox-precaching";
+
+    // Use with precache injection
+    precacheAndRoute(self.__WB_MANIFEST);
+
+  </script>
 
 </body>
+
 </html>
