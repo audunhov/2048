@@ -32,6 +32,16 @@ GameManager.prototype.setup = function () {
   this.over        = false;
   this.won         = false;
 
+
+
+  let images = []
+  
+  for (let i = 1; i <= 13; i++) {
+    images.push(`images/${i}.jpg`)
+  }
+
+  preloadImages(images)
+
   // Add the initial tiles
   this.addStartTiles();
 
@@ -45,6 +55,28 @@ GameManager.prototype.addStartTiles = function () {
     this.addRandomTile();
   }
 };
+
+function preloadImages(array) {
+  if (!preloadImages.list) {
+      preloadImages.list = [];
+  }
+  var list = preloadImages.list;
+  for (var i = 0; i < array.length; i++) {
+      var img = new Image();
+      img.onload = function() {
+          var index = list.indexOf(this);
+          if (index !== -1) {
+              // remove image from the array once it's loaded
+              // for memory consumption reasons
+              list.splice(index, 1);
+          }
+      }
+      list.push(img);
+      img.src = array[i];
+  }
+}
+
+preloadImages(["url1.jpg", "url2.jpg", "url3.jpg"]);
 
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
